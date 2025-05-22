@@ -12,8 +12,30 @@ function formatDate(date, fromFormat, toFormat) {
   let month;
   let day;
   let toDate = [];
+  let separator;
+  let newSeparator;
 
-  const newDate = date.split(fromFormat[fromFormat.length - 1]);
+  for (let i = 0; i < fromFormat.length; i++) {
+    if (
+      !fromFormat[i].includes('Y') &&
+      !fromFormat[i].includes('M') &&
+      !fromFormat[i].includes('D')
+    ) {
+      separator = fromFormat[i];
+    }
+  }
+
+  for (let j = 0; j < fromFormat.length; j++) {
+    if (
+      !toFormat[j].includes('Y') &&
+      !toFormat[j].includes('M') &&
+      !toFormat[j].includes('D')
+    ) {
+      newSeparator = toFormat[j];
+    }
+  }
+
+  const newDate = date.split(separator);
 
   for (let i = 0; i < fromFormat.length; i++) {
     if (fromFormat[i].includes('Y')) {
@@ -57,7 +79,7 @@ function formatDate(date, fromFormat, toFormat) {
     }
   }
 
-  toDate = toDate.join(toFormat[toFormat.length - 1]);
+  toDate = toDate.join(newSeparator);
 
   return toDate;
 }
