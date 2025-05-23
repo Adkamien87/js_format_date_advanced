@@ -12,26 +12,24 @@ function formatDate(date, fromFormat, toFormat) {
   let month;
   let day;
   let toDate = [];
-  let separator;
-  let newSeparator;
+  let separator = ' ';
+  let newSeparator = ' ';
 
-  for (let i = 0; i < fromFormat.length; i++) {
-    if (
-      !fromFormat[i].includes('Y') &&
-      !fromFormat[i].includes('M') &&
-      !fromFormat[i].includes('D')
-    ) {
-      separator = fromFormat[i];
+  for (let i = 0; i < date.length; i++) {
+    if (isNaN(date[i])) {
+      separator = date[i];
     }
   }
 
-  for (let j = 0; j < fromFormat.length; j++) {
-    if (
-      !toFormat[j].includes('Y') &&
-      !toFormat[j].includes('M') &&
-      !toFormat[j].includes('D')
-    ) {
-      newSeparator = toFormat[j];
+  if (toFormat.length > 3) {
+    for (let j = 0; j < fromFormat.length; j++) {
+      if (
+        !toFormat[j].includes('Y') &&
+        !toFormat[j].includes('M') &&
+        !toFormat[j].includes('D')
+      ) {
+        newSeparator = toFormat[j];
+      }
     }
   }
 
